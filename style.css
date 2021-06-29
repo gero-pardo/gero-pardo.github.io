@@ -1,0 +1,211 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+.main-doc {
+  text-align:center;
+  font-family:ubuntu;
+}
+
+/** a e s t h e t h i c intro **/
+
+.welcome-section {
+  position:relative;
+  color:#101010;
+  background-color:#a0191a;
+  height:100vh;
+  width:100%;
+}
+
+#intro {
+  padding-top:20vmin;
+}
+
+/** Navigation Bar **/
+
+.navbar {
+  position:sticky;
+  z-index:1;
+  top:0;
+  left:0;
+  width:100%;
+  height:5vh;
+  min-height:30px;
+  background-color:#0a3879;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+}
+
+.navlink {
+  font-size:125%;
+  text-decoration:none;
+  color:#b5b5df;
+  flex:1 1 auto;
+  transition:color 0.2s ease-out;
+}
+
+.navlink:hover {
+  color:#ffffff;
+  transition:color 0.2s ease-out;
+}
+
+.secret-button {
+  position:absolute;
+  color:#0a3879;
+  opacity:0;
+  margin: 0 0 0 -30px;
+}
+
+.secret-box {
+    display:none;
+}
+
+/*as soon as site loads, the control-me class get's a after effect
+when box is checked, the after effect gets updated*/
+
+
+.control-me::after {
+    content: "Lorem";
+}
+
+#toggle:checked + .control-me::after {
+    content: "Ipsum!";
+}
+
+@media (max-width:500px) {
+  #navlink2 {
+    display:none;
+  }
+}
+
+/** Projects -- Structure**/
+
+.projects {
+  width:100%;
+  background-color:#cccccc;
+}
+
+.projects .ext-link {
+  padding:10px;
+  font-size:150%;
+  text-decoration:none;
+  color:gray;
+  transition:color 0.2s ease-in;
+}
+
+.ext-link:hover{
+  color:#aaaaaa;
+  transition:color 0.2s ease-in;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(150px, 1fr));
+  grid-gap:1px;
+}
+
+/** Individual Tiles **/
+
+.project-tile {
+  display:grid;
+  grid-template-rows: 0.8fr 0.2fr;
+  text-decoration: none;
+  color:#2a2a2a;
+  background:gray;
+  border-radius: 2px;
+  box-shadow:2px 2px 0 rgba(050, 0, 0, 0.5);
+  transition:box-shadow 1s;
+}
+
+.project-tile:hover {
+  box-shadow:2px 2px 0 rgba(255, 50, 50, 1);
+  transition:box-shadow 1s;
+}
+
+.tile-img {
+  width:100%;
+  height:100%;
+}
+
+.project-tile div {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  transition:color 0.3s;
+}
+
+.project-tile div:hover {
+  color:#a25252;
+  transition:color 0.3s;
+}
+
+/** Closing **/
+
+.footer {
+  display:flex;
+  width:100%;
+  background-color:#0a3879;
+}
+
+/** notes: 
+
+class is inheritable
+id is not
+
+it's preferable to use class, specially in nested blocks
+
+inline refers to the content of a block
+div --> a generic block
+span --> a generic inline
+  
+* --> "all" selector
+> --> "all elements inside" selector
+: --> state selector (hover, on click, etc)
+:: --> special selector (marker, etc)
+
+--var --> variable selector (called with var())
+
+two mistakes: 
+** width mismatch, over 100% of viewport 
+--> SOLVED: replace vm with % to take into account scrollbar length 
+** grid mismatch: gotta find a way to fix the heigths into a static form
+--> SOLVED: 3 solutions were tried:
+----> sol A: flex-basis on the img element forces a static %
+however this is not properly shared with the anchor element.
+I need to make it so the image resizes in such way the static % is always
+respected - the img element always occupies 90% and the a element 10%
+----> sol B: setting the img class to occuppy 100% of height and width forces
+a 1:1 resize inside the flexbox. this forces a static ratio since it occupies
+all space in the box not used by the p's span, but does not actually
+use the flex itself to regulate it's size.
+To achieve this I'd need to find a way to dynamically resize the a element's text
+so that it fits a fixed % of the flex regardles of it's text content.
+point of readability, in short - the text must impose itself over the image
+----> sol C: on top of setting height and width to 100% in img, declaring the
+tile container a grid instead of flex allows me to set static %s of the
+contained for each assigned item. -----> CORRECT!
+----> furthermore, both grid and flex are one dimensional, so the nested
+p element inside the a element grid item must be declared a flexbox
+so it occupies all the space inside it's container, then aligned to center.
+
+final notes:
+* The "Lorem" on the navbar is meant to be an onclick event that transforms 
+to "Ipsum!" when clicked, however I couldn't find a way to do it without
+including Javascript, which I don't wish to do.
+Update: Prodding around on google showed me there's a hack using an empty
+element with appended "content" value from CSS, changing it with a checkbox
+and a an invisible button.
+
+**/
