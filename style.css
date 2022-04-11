@@ -114,7 +114,7 @@
   transition:color 0.3s;
 }
 
-@media only screen and (max-device-width: 650px) {
+@media (pointer:coarse) {
 
     .welcome-section {
         display:flex;
@@ -137,7 +137,7 @@
     }
 }
 
-@media only screen and (max-device-width: 500px) {
+@media (pointer:coarse) {
 
     .project-tile {
         grid-template-rows: unset;
