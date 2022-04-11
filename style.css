@@ -61,35 +61,6 @@ html {
   transition:color 0.2s ease-out;
 }
 
-.secret-button {
-  position:absolute;
-  color:#0a3879;
-  opacity:0;
-  margin: 0 0 0 -30px;
-}
-
-.secret-box {
-    display:none;
-}
-
-/*as soon as site loads, the control-me class get's a after effect
-when box is checked, the after effect gets updated*/
-
-
-.control-me::after {
-    content: "Lorem";
-}
-
-#toggle:checked + .control-me::after {
-    content: "Ipsum!";
-}
-
-@media (max-width:500px) {
-  #navlink2 {
-    display:none;
-  }
-}
-
 /** Projects -- Structure**/
 
 .projects {
@@ -112,7 +83,7 @@ when box is checked, the after effect gets updated*/
 
 .grid {
   display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
   grid-gap:1px;
 }
 
@@ -158,54 +129,3 @@ when box is checked, the after effect gets updated*/
   width:100%;
   background-color:#0a3879;
 }
-
-/** notes: 
-
-class is inheritable
-id is not
-
-it's preferable to use class, specially in nested blocks
-
-inline refers to the content of a block
-div --> a generic block
-span --> a generic inline
-  
-* --> "all" selector
-> --> "all elements inside" selector
-: --> state selector (hover, on click, etc)
-:: --> special selector (marker, etc)
-
---var --> variable selector (called with var())
-
-two mistakes: 
-** width mismatch, over 100% of viewport 
---> SOLVED: replace vm with % to take into account scrollbar length 
-** grid mismatch: gotta find a way to fix the heigths into a static form
---> SOLVED: 3 solutions were tried:
-----> sol A: flex-basis on the img element forces a static %
-however this is not properly shared with the anchor element.
-I need to make it so the image resizes in such way the static % is always
-respected - the img element always occupies 90% and the a element 10%
-----> sol B: setting the img class to occuppy 100% of height and width forces
-a 1:1 resize inside the flexbox. this forces a static ratio since it occupies
-all space in the box not used by the p's span, but does not actually
-use the flex itself to regulate it's size.
-To achieve this I'd need to find a way to dynamically resize the a element's text
-so that it fits a fixed % of the flex regardles of it's text content.
-point of readability, in short - the text must impose itself over the image
-----> sol C: on top of setting height and width to 100% in img, declaring the
-tile container a grid instead of flex allows me to set static %s of the
-contained for each assigned item. -----> CORRECT!
-----> furthermore, both grid and flex are one dimensional, so the nested
-p element inside the a element grid item must be declared a flexbox
-so it occupies all the space inside it's container, then aligned to center.
-
-final notes:
-* The "Lorem" on the navbar is meant to be an onclick event that transforms 
-to "Ipsum!" when clicked, however I couldn't find a way to do it without
-including Javascript, which I don't wish to do.
-Update: Prodding around on google showed me there's a hack using an empty
-element with appended "content" value from CSS, changing it with a checkbox
-and a an invisible button.
-
-**/
