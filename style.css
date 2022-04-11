@@ -4,15 +4,6 @@
   box-sizing: border-box;
 }
 
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
-html {
-  box-sizing: border-box;
-}
-
 .main-doc {
   text-align:center;
   font-family:ubuntu;
@@ -24,7 +15,7 @@ html {
   position:relative;
   color:#101010;
   background-color:#a0191a;
-  height:100vh;
+  height:50vh;
   width:100%;
 }
 
@@ -87,6 +78,7 @@ html {
   grid-gap:1px;
 }
 
+
 /** Individual Tiles **/
 
 .project-tile {
@@ -121,6 +113,44 @@ html {
   color:#a25252;
   transition:color 0.3s;
 }
+
+@media only screen and (max-width: 650px) {
+
+    .welcome-section {
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+
+    #text-wrapper {
+        width:90%;
+        margin: 0 10px 0 10px ;
+    }
+
+    #text-wrapper h1 {
+        font-size:145%;
+    }
+
+    #text-wrapper p {
+        text-align: justify;
+        text-justify: inter-character;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+
+    .project-tile {
+        grid-template-rows: unset;
+        grid-template-columns: 0.75fr 0.25fr;
+    }
+
+    .tile-img {
+        height: 1fr;
+        object-fit:full;
+    }
+
+  }
+
 
 /** Closing **/
 
