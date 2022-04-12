@@ -25,6 +25,17 @@
     padding-top:20vmin;
 }
 
+#git-link {
+    text-decoration:none;
+    font-weight: bold;
+    color:#101010;
+}
+
+#git-link:hover {
+    color:#ffffff;
+    transition:color 0.2s ease-out;
+}
+
 /** Navigation Bar **/
 
 .navbar {
